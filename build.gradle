@@ -1,0 +1,67 @@
+group 'com.tomeokin'
+version '0.1.0'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+    }
+    repositories {
+        //jcenter()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        // run help->dependencyUpdates to see new available version
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+apply plugin: 'com.github.ben-manes.versions'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
+static releaseTime() {
+    return new Date().time
+}
+
+jar {
+    // ${baseName}-${appendix}-${version}-${classifier}.${extension}
+    baseName = 'lspush-server'
+    appendix = "${releaseTime()}"
+    version = "${versionMajor}.${versionMinor}.${versionPatch}"
+}
+
+repositories {
+    //jcenter()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('mysql:mysql-connector-java')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile("commons-validator:commons-validator:1.5.1")
+    compile("com.google.guava:guava:21.0")
+    compile("org.apache.commons:commons-lang3:3.5")
+    compile("joda-time:joda-time:2.9.9")
+    compile("org.jsoup:jsoup:1.10.2")
+    compile("com.google.code.findbugs:jsr305:3.0.2")
+    compile("commons-validator:commons-validator:1.6")
+    compile("com.j256.simplemagic:simplemagic:1.11")
+}
