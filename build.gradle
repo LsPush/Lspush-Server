@@ -3,16 +3,16 @@ version '0.1.0'
 
 buildscript {
     ext {
-        springBootVersion = '1.5.2.RELEASE'
+        springBootVersion = '1.5.3.RELEASE'
     }
     repositories {
-        //jcenter()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        jcenter()
+        //maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         // run help->dependencyUpdates to see new available version
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.0'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
     }
 }
 
@@ -40,8 +40,8 @@ jar {
 }
 
 repositories {
-    //jcenter()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    jcenter()
+    //maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
@@ -57,7 +57,7 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     compile("commons-validator:commons-validator:1.5.1")
-    compile("com.google.guava:guava:21.0")
+    compile("com.google.guava:guava:22.0")
     compile("org.apache.commons:commons-lang3:3.5")
     compile("joda-time:joda-time:2.9.9")
     compile("org.jsoup:jsoup:1.10.2")
